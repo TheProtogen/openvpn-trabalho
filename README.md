@@ -4,7 +4,7 @@ Esse sistema foi criado para que cada funcionário tenha seu próprio certificad
 
 ## Prints das telas
 
-[Link dos prints](prints)
+[Link dos prints](prints/prints.md)
 
 ## Estrutura da solução:
 
