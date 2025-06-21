@@ -2,6 +2,10 @@
 
 Esse sistema foi criado para que cada funcionário tenha seu próprio certificado de VPN, sem precisar compartilhar com outras pessoas. Ele permite criar, baixar e revogar certificados com segurança e controle. Além disso, segue boas práticas como controle de acesso e segmentação de rede.
 
+## Prints das telas
+
+
+
 ## Estrutura da solução:
 
 | Máquina  | IP        | Função                    | Tecnologias  |
