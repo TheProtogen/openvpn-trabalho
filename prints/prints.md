@@ -1,3 +1,3 @@
 # Pagina inicial
 
-![Primeira página](Tela indexphp.png)
+![Primeira página](prints/Tela_indexphp.png)
