@@ -46,3 +46,71 @@ Usuários
     --> Login seguro: Com senhas criptografadas.
 
     --> Proteção: Somente usuários autenticados acessam as páginas.
+
+## Configuração das Máquinas
+
+Todas as VMs:
+
+    --> Configurar rede em /etc/network/interfaces.
+
+    --> Usuário padrão: usuario | Senha: 123456
+
+Firewall:
+
+    --> Rede configurada com IP fixo: 10.0.0.1
+
+    --> Regras de firewall no arquivo /etc/nftables.conf
+
+OpenVPN:
+
+    --> IP fixo: 10.0.0.10
+
+    --> Instalar Apache, PHP e OpenVPN.
+
+    --> Colocar os arquivos do painel em /var/www/html/.
+
+Database:
+
+    --> IP fixo: 10.0.0.20
+
+    --> Instalar MySQL Server.
+
+    --> Criar o banco e tabelas para usuários e certificados.
+
+Acesso ao Painel Web
+
+    --> No Firewall, rode ip a para pegar o IP da interface enp0s8 (interface externa).
+
+    --> No navegador, acesse:
+
+http://<IP_DO_FIREWALL>/index.php
+
+Login padrão:
+
+    --> Email: admin@protonmail.com
+
+    --> Senha: Admin123!
+
+Estrutura de Pastas do Projeto
+
+Dentro da VM do OpenVPN, em /var/www/html/:
+
+```
+/var/www/html/
+├── index.php                 
+├── views/                    
+│   ├── cadastro.php          
+│   ├── login.php             
+│   ├── logout.php            
+│   ├── adms.php              
+│   ├── baixar.php            
+│   └── certificados.php      
+├── includes/                               
+│   ├── navbar.php            
+│   ├── auth.php              
+│   └── funcoes.php           
+└── storage/                  
+    ├── registros.json        
+    ├── usuarios.json        
+    └── A1RS972_cert.zip   
+```
