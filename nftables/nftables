@@ -1,1 +1,48 @@
+#!/usr/sbin/nft -f
 
+flush ruleset
+
+table inet filter {
+    chain input {
+        type filter hook input priority 0;
+        policy drop;
+        iif lo accept
+        ct state established,related accept
+    }
+
+    chain forward {
+        type filter hook forward priority 0;
+        policy drop;
+
+        ct state established,related accept
+        ip daddr 10.0.0.10 tcp dport {80, 443} accept
+
+        ip daddr 10.0.0.10 udp dport 1194 accept
+
+        ip saddr 192.168.200.0/24 ip daddr 10.0.0.10 tcp dport 22 accept
+
+        ip saddr 192.168.200.0/24 ip daddr 10.0.0.20 tcp dport 3306 accept
+
+        ip saddr 10.0.0.10 ip daddr 10.0.0.20 tcp dport 3306 accept
+    }
+
+    chain output {
+        type filter hook output priority 0;
+        policy accept;
+    }
+}
+
+table ip nat {
+    chain prerouting {
+        type nat hook prerouting priority -100;
+
+        tcp dport 80 dnat to 10.0.0.10:80
+        tcp dport 443 dnat to 10.0.0.10:443
+        udp dport 1194 dnat to 10.0.0.10:1194
+    }
+
+    chain postrouting {
+        type nat hook postrouting priority 100;
+        oif "enp0s8" masquerade
+    }
+}
